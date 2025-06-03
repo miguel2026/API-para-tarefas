@@ -1,5 +1,7 @@
 from fastapi import APIRouter
-from Workflow.models import Criar_usuario, Criar_tarefa
+from Workflow.services import Criar_usuario, Criar_tarefa
+
+
 router = APIRouter()
 
 # Usuários

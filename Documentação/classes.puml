@@ -1,0 +1,43 @@
+@startuml Tarefas
+
+class usuario {
+  -id: int
+  -nome: string
+  -email: string
+  -senha: string
+  -tarefas: List<tarefa_id>
+  +atualizar(nome: string, email: string, senha: string): void
+  +get_info(): string
+  +listar_tarefas(): List<tarefa>
+}
+class tarefa {
+  -id: int
+  -titulo: string
+  -descricao: string
+  -status: string
+  -data_criacao: date
+  -data_conclusao: date
+  -atribuido_a: List<usuario>
+  +atualizar(titulo: string, descricao: string, status: string): void
+  +remover_usuario(usuario_id: int): void
+  +adicionar_usuario(usuario_id: int): void
+  +get_info(): string
+  +concluir(): void
+}
+
+class sistema {
+  -usuarios: List<usuario>
+  -tarefas: List<tarefa>
+  +adicionar_usuario(nome: string, email: string, senha: string): usuario
+  +adicionar_tarefa(titulo: string, descricao: string, usuarios: List<int>): tarefa
+  +get_usuario(id: int): usuario
+  +get_tarefa(id: int): tarefa
+  +remover_usuario(id: int): void
+  +remover_tarefa(id: int): void
+}
+
+sistema "1" *-- "0..*" usuario
+sistema "1" *-- "0..*" tarefa
+tarefa "0..*" o-- "0..*" usuario
+
+@enduml
