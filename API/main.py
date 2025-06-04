@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from Presentation.routes import router as routes
+
 API = FastAPI(
     title="Trabalho GB",
     description="API para o trabalho de GB",
