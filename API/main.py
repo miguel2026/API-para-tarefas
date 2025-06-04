@@ -1,10 +1,10 @@
 from fastapi import FastAPI
 from Presentation.routes import router as routes
 
-API = FastAPI(
+app = FastAPI(
     title="Trabalho GB",
     description="API para o trabalho de GB",
     version="1.0.0",
 )
 
-API.include_router(routes)
+app.include_router(routes)

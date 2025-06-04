@@ -1,8 +1,9 @@
-from fastapi import APIRouter
-from Workflow import services
-from Model import models, schemas
-from Persistence import database
-from Persistence.repositories import user_repository, task_repository 
+from fastapi import APIRouter, Query
+from API.Workflow import services
+from API.Model import models, schemas
+from API.Persistence import database
+from API.Persistence.repositories import user_repository, task_repository
+from typing import Optional
 
 session = database.SessionLocal
 router = APIRouter()
@@ -16,7 +17,7 @@ async def create_user(usuario: schemas.UsuarioBase):
     """
     services.criar_usuario(session, schemas.UsuarioBase)
 
-@router.get("/users/{id}",response_model=schemas.UsuarioBase)
+@router.get("/users/{id}",response_model=schemas.Usuario_id)
 async def get_user(id: int):
     """
     Obtém informações de um usuário específico.
@@ -55,7 +56,7 @@ async def get_task(id: int):
     return services.obter_tarefa(session, id)
 
 @router.get("/tasks",response_model=schemas.UsuarioOut)
-async def list_tasks(assignedTo: int = None):
+async def list_tasks(assignedTo: Optional[int] = Query(None)):
     """
     Lista todas as tarefas atribuídas a um usuário específico.
     """
@@ -75,19 +76,3 @@ async def delete_task(id: int):
     Remove uma tarefa.
     """
     services.excluir_tarefa(session, id)
-
-# autenticação
-
-@router.post("/auth/login")
-async def login():
-    """
-    Login de usuários, retornando um token para autenticação nas demais requisições.
-    """
-    return {"message": "Login realizado com sucesso."}
-
-@router.post("/auth/logout")
-async def logout():
-    """
-    Logout do usuário.
-    """
-    return {"message": "Logout realizado com sucesso."}

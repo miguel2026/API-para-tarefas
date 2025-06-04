@@ -9,7 +9,6 @@ class TarefaBase(BaseModel):
     descricao: Optional[str] = None
     status: Optional[str] = "pendente"
 
-
 class TarefaCreate(TarefaBase):
     usuarios_ids: List[int]
 
@@ -23,7 +22,6 @@ class TarefaUpdate(BaseModel):
 
 class TarefaOut(TarefaBase):
     id: int
-    data_criacao: Optional[date]
     usuarios: List[int]  # IDs dos usuarios atribuidos
 
     class Config:
@@ -49,7 +47,7 @@ class UsuarioUpdate(BaseModel):
 
 class UsuarioOut(BaseModel):
     id: int
-    tarefas: List[int]  
+    tarefas: List[TarefaBase]  
 
     class Config:
         orm_mode = True

@@ -1,0 +1,24 @@
+@startuml database
+entity usuarios {
+    *id : int <<PK>>
+    nome : varchar
+    email : varchar <<UNIQUE>>
+    senha : varchar
+}
+
+entity tarefas {
+    *id : int <<PK>>
+    titulo : varchar
+    descricao : varchar
+    status : varchar
+    data_criacao : date
+}
+
+entity tarefa_usuario {
+    *usuario_id : int <<FK>>
+    *tarefa_id : int <<FK>>
+}
+
+usuarios ||--o{ tarefa_usuario 
+tarefas ||--o{ tarefa_usuario 
+@enduml

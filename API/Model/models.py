@@ -1,7 +1,7 @@
 # API/Models/models.py
 from sqlalchemy import Column, Integer, String, Date, Table, ForeignKey
 from sqlalchemy.orm import relationship
-from Persistence.database import Base
+from API.Persistence.database import Base
 
 # Tabela de associacao entre tarefas e usuarios
 tarefa_usuario = Table(
@@ -29,6 +29,5 @@ class Tarefa(Base):
     titulo = Column(String, nullable=False)
     descricao = Column(String)
     status = Column(String, default="pendente")
-    data_criacao = Column(Date)
 
     usuarios = relationship("Usuario", secondary=tarefa_usuario, back_populates="tarefas")
