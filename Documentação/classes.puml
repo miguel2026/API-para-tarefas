@@ -1,0 +1,29 @@
+@startuml classes
+
+class Usuario {
+    +id: int
+    +nome: str
+    +email: str
+    +senha: str
+    +tarefas: List<Tarefa>
+}
+
+class Tarefa {
+    +id: int
+    +titulo: str
+    +descricao: str
+    +status: str
+    +data_criacao: date
+    +usuarios: List<Usuario>
+}
+
+class tarefa_usuario {
+    +usuario_id: int
+    +tarefa_id: int
+}
+
+Usuario "1..*" -- "0..*" Tarefa : associação
+Usuario --> tarefa_usuario
+Tarefa --> tarefa_usuario
+
+@enduml
