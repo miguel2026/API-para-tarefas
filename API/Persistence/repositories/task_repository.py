@@ -2,6 +2,8 @@ from sqlalchemy.orm import Session
 from API.Model import models
 from API.Model.schemas import TarefaCreate
 from datetime import date
+
+
 def criar_tarefa(db: Session, tarefa: TarefaCreate):
     usuarios = db.query(models.Usuario).filter(models.Usuario.id.in_(tarefa.usuarios_ids)).all()
     db_tarefa = models.Tarefa(

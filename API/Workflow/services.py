@@ -5,7 +5,7 @@ from API.Model import schemas
 
 def criar_usuario(db: Session, usuario: schemas.UsuarioBase):
     # Regras de negócio (ex: impedir emails duplicados)
-    existente = user_repository.buscar_usuario_por_id(db, usuario.email)
+    existente = user_repository.buscar_usuario_por_email(db, usuario.email)
     if existente:
         raise ValueError("Usuário com esse e-mail já existe")
     

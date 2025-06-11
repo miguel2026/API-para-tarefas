@@ -26,7 +26,7 @@ Decidimos utilizar ORM no banco de dados para facilitar a integração das class
 
 ## Testes:
 
-Foi realizado testes unitários para cada endpoint. Foi feito 
+Foi realizado testes unitários para cada endpoint. Foi feito com unnitest e pytest.
 
 
 ## Como usar

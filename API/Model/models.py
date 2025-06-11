@@ -31,3 +31,4 @@ class Tarefa(Base):
     status = Column(String, default="pendente")
 
     usuarios = relationship("Usuario", secondary=tarefa_usuario, back_populates="tarefas")
+
