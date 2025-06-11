@@ -9,8 +9,11 @@ def criar_usuario(db: Session, usuario: UsuarioBase):
     db.refresh(db_usuario)
     return db_usuario
 
-def buscar_usuario_por_id(db: Session, usuario_id: int):
-    return db.query(models.Usuario).filter(models.Usuario.id == usuario_id).first()
+def buscar_usuario_por_id(db: Session, usuario_id: str):
+    return db.query(models.Usuario).filter(models.Usuario.id ==usuario_id).first()
+
+def buscar_usuario_por_email(db: Session, usuario_email: str):
+    return db.query(models.Usuario).filter(models.Usuario.email == usuario_email).first()
 
 def atualizar_usuario(db: Session, usuario_id: int, dados: dict):
     usuario = db.query(models.Usuario).filter(models.Usuario.id == usuario_id).first()

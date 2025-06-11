@@ -5,9 +5,9 @@ from API.Persistence import database
 from API.Persistence.repositories import user_repository, task_repository
 from typing import Optional
 
-session = database.SessionLocal
+session = database.SessionLocal()
 router = APIRouter()
-
+database.Base.metadata.create_all(bind=database.engine)
 # Usuários
 
 @router.post("/users")
@@ -15,7 +15,7 @@ async def create_user(usuario: schemas.UsuarioBase):
     """
     Cria um novo usuário.
     """
-    services.criar_usuario(session, schemas.UsuarioBase)
+    services.criar_usuario(session, usuario)
 
 @router.get("/users/{id}",response_model=schemas.Usuario_id)
 async def get_user(id: int):
